@@ -1,3 +1,31 @@
+let firstOperand = ''
+let secondOperand = ''
+let operator
+let displayValue
+
+const clearBTN = document.getElementById('clearBtn')
+const deleteBTN = document.getElementById('deleteBtn')
+const display = document.querySelector('display')
+const numKeys = document.querySelector('buttons')
+
+numKeys.addEventListener('click', e => {
+    if(e.target.matches('button')) {
+        //do something
+    })
+})
+clearBTN.addEventListener('click', clear)
+deleteBTN.addEventListener('click', del)
+
+function clear() {
+}
+function del() {   
+}
+
+
+
+
+
+
 function addition(a, b) {
     return a + b
 }
@@ -12,9 +40,6 @@ function division(a, b) {
 }
 //variables to update display
 
-let firstNum
-let secondNum
-let operator
 function operate(operator, a, b) {
     a = Number(a)
     b = Number(b)
@@ -34,6 +59,6 @@ function operate(operator, a, b) {
 }
 
 
-/* Fill out HTML with buttons, style initial calc with CSS, dont worry about linking to JS.
-build up calculator functions and link them to button presses to make the buttons
-the input into the function operations. */
+/* all buttons need to be linked with event listeners so that when pressed they
+activate JS functions. Buttons need to input button and update display.
+Once inputted = should call operate function which activates corresponding func. */
