@@ -62,4 +62,6 @@
     margin-bottom: 20px;
     background-color: antiquewhite;
     box-sizing: border-box;
+    font-size: 2rem;
+    text-align: right;
 }

@@ -4,26 +4,40 @@ let operator
 let displayValue
 
 const clearBTN = document.getElementById('clearBtn')
-const deleteBTN = document.getElementById('deleteBtn')
-const display = document.querySelector('display')
+const display = document.getElementById('display')
 const numKeys = document.querySelector('buttons')
+const numberButtons = document.querySelectorAll('[data-number]')
+const operatorButtons = document.querySelectorAll('[data-operator]')
 
-numKeys.addEventListener('click', e => {
-    if(e.target.matches('button')) {
-        //do something
-    })
-})
-clearBTN.addEventListener('click', clear)
-deleteBTN.addEventListener('click', del)
+// function inputs numbers and symbols into calculator display.
 
-function clear() {
+function appendToDisplay(value) {
+    if(display.textContent === '0' && value !== '.') {
+        display.textContent = value
+    } else {
+        display.textContent += value
+    }
 }
-function del() {   
+
+numberButtons.forEach((button) => 
+    button.addEventListener('click', () => appendToDisplay(button.textContent)))
+
+// function operates delete key, removes last number from display.
+
+function deleteLastCharacter() {
+    display.textContent = display.textContent.slice(0, -1)
+    if(display.textContent === '') {
+        display.textContent = '0'
+    }
 }
 
+// function operates clear key, clears and resets calculator display.
 
-
-
+function clearDisplay() {
+    display.textContent = '0'
+    firstOperand = ''
+    secondOperand = ''
+}
 
 
 function addition(a, b) {
@@ -38,6 +52,7 @@ function multiply(a, b) {
 function division(a, b) {
     return a / b
 }
+
 //variables to update display
 
 function operate(operator, a, b) {
