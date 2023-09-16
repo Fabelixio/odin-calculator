@@ -1,26 +1,39 @@
 let firstOperand = ''
 let secondOperand = ''
-let operator
-let displayValue
+let currentOperation = null
+let screenReset = false
 
 const clearBTN = document.getElementById('clearBtn')
-const display = document.getElementById('display')
+const display = document.getElementById('display') // displayValue === the same???
 const numKeys = document.querySelector('buttons')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operatorButtons = document.querySelectorAll('[data-operator]')
+const equalsBTN = document.getElementById('equals')
+const displayLast = document.getElementById('displayMini')
+
+equalsBTN.addEventListener('click', evaluate)
 
 // function inputs numbers and symbols into calculator display.
 
 function appendToDisplay(value) {
+    if(display.textContent === '0' || screenReset)
+    resetDisplay()
     if(display.textContent === '0' && value !== '.') {
         display.textContent = value
     } else {
         display.textContent += value
     }
 }
+function resetDisplay() {
+    display.textContent = ''
+    screenReset = false
+}
 
 numberButtons.forEach((button) => 
     button.addEventListener('click', () => appendToDisplay(button.textContent)))
+
+operatorButtons.forEach((button) =>
+    button.addEventListener('click', () => setOperation(button.textContent)))
 
 // function operates delete key, removes last number from display.
 
@@ -35,10 +48,41 @@ function deleteLastCharacter() {
 
 function clearDisplay() {
     display.textContent = '0'
+    displayLast.textContent = ''
     firstOperand = ''
     secondOperand = ''
+    currentOperation = null
 }
 
+// function evaluates display value and calculates result to output
+
+function setOperation(operator) {
+    if(currentOperation !== null) evaluate()
+    firstOperand = display.textContent
+    currentOperation = operator
+    displayLast.textContent = `${firstOperand} ${currentOperation}`
+    screenReset = true
+}
+
+function evaluate() {
+    if(currentOperation === null || screenReset) return
+    if(currentOperation === '÷' && display.textContent === '0') {
+    alert("Dividing by zero is prohibited, law enforcement has been notified. Do not resist.")
+    return
+    }
+    secondOperand = display.textContent
+    display.textContent = roundResult(
+        operate(currentOperation, firstOperand, secondOperand)
+    )
+    displayLast.textContent = `${firstOperand} ${currentOperation} ${secondOperand}`
+    currentOperation = null
+}
+
+function roundResult(number) {
+    return Math.round(number * 1000) / 1000
+}
+
+// take display input and put it into operate(), put result into display.
 
 function addition(a, b) {
     return a + b
@@ -53,7 +97,7 @@ function division(a, b) {
     return a / b
 }
 
-//variables to update display
+// core calculator functions, takes 3 inputs, returns 1 result
 
 function operate(operator, a, b) {
     a = Number(a)
@@ -74,6 +118,4 @@ function operate(operator, a, b) {
 }
 
 
-/* all buttons need to be linked with event listeners so that when pressed they
-activate JS functions. Buttons need to input button and update display.
-Once inputted = should call operate function which activates corresponding func. */
+/* need to fix calculation display error*/

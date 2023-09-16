@@ -10,7 +10,10 @@
 <body>
     <div class="main">
         <div class="calculator">
-            <div class="display" id="display">0</div>
+            <div class="screen "id="screen">
+                <div class="display" id="display">0</div>
+                <div class="displayMini" id="displayMini"></div>
+            </div>
             <div class="buttons">
                 <button class="btn span-2 red" id="clearBtn" onclick="clearDisplay()">CLEAR</button>
                 <button class="btn span-2 blue" id="deleteBtn" onclick="deleteLastCharacter()">DELETE</button>
@@ -30,9 +33,9 @@
                 <button class="btn" data-operator>-</button>
 
                 <button class="btn" onclick="appendToDisplay('.')">.</button>
-                <button class="btn" onclick="appendToDisplay('0')">0</button>
-                <button class="btn" onclick="calculateResult()">=</button>
-                <button class="btn" data-operator="">+</button>
+                <button class="btn" data-number>0</button>
+                <button class="btn" id="equals">=</button>
+                <button class="btn" data-operator>+</button>
             </div>
         </div> 
     </div>

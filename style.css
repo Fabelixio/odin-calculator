@@ -47,21 +47,32 @@
 .span-2 {
     grid-column: span 2;
 }
-.display {
-    flex: 1;
+.screen {
+    display: flex;
+    background-color: antiquewhite;
+    border-radius: 10px;
     border: solid 1px black;
-    vertical-align: top;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-align: right;
+    height: 70px;
+    width: 250px;
+    box-sizing: border-box;
+    padding: 5px;
+
+}
+.displayMini {
+    font-size: 1rem;
+    min-height: 15px;
+    min-width: 50px;
     word-wrap: break-word;
     word-break: break-all;
-    height: 70px;
-    min-width: 105px;;
+    border-radius: 10px;
     display: flex;
-    margin-bottom: 20px;
-    background-color: antiquewhite;
+
+}
+.display {
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 50px;
+    display: flex;
     box-sizing: border-box;
     font-size: 2rem;
-    text-align: right;
 }
