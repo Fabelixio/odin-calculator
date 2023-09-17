@@ -61,12 +61,11 @@
 .displayMini {
     font-size: 1rem;
     min-height: 15px;
-    min-width: 50px;
     word-wrap: break-word;
     word-break: break-all;
     border-radius: 10px;
-    display: flex;
-
+    flex: 1;
+    text-align: right;
 }
 .display {
     word-wrap: break-word;
@@ -75,4 +74,5 @@
     display: flex;
     box-sizing: border-box;
     font-size: 2rem;
+    flex-shrink: 1;
 }

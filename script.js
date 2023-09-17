@@ -4,7 +4,7 @@ let currentOperation = null
 let screenReset = false
 
 const clearBTN = document.getElementById('clearBtn')
-const display = document.getElementById('display') // displayValue === the same???
+const display = document.getElementById('display')
 const numKeys = document.querySelector('buttons')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operatorButtons = document.querySelectorAll('[data-operator]')
@@ -24,6 +24,9 @@ function appendToDisplay(value) {
         display.textContent += value
     }
 }
+
+// function resets display to blank upon entering second operand.
+
 function resetDisplay() {
     display.textContent = ''
     screenReset = false
@@ -64,6 +67,8 @@ function setOperation(operator) {
     screenReset = true
 }
 
+// function inputs second operand, checks for % 0, calls operate function and displays result.
+
 function evaluate() {
     if(currentOperation === null || screenReset) return
     if(currentOperation === '÷' && display.textContent === '0') {
@@ -82,7 +87,7 @@ function roundResult(number) {
     return Math.round(number * 1000) / 1000
 }
 
-// take display input and put it into operate(), put result into display.
+// functions for core calculations, called by operate function as needed.
 
 function addition(a, b) {
     return a + b
@@ -97,7 +102,7 @@ function division(a, b) {
     return a / b
 }
 
-// core calculator functions, takes 3 inputs, returns 1 result
+// core calculator functions, takes operands and operator, calls appropriate function.
 
 function operate(operator, a, b) {
     a = Number(a)
@@ -111,11 +116,8 @@ function operate(operator, a, b) {
             return multiply(a, b)
         case '÷':
             if (b === 0) return null
-            else return divide(a, b)
+            else return division(a, b)
         default:
             return null
     }
 }
-
-
-/* need to fix calculation display error*/
